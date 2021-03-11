@@ -1,6 +1,7 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
 module.exports = {
   entry: "./src/index.js",
@@ -38,6 +39,9 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
     }),
   ],
   devServer: {
