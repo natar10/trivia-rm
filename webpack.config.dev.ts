@@ -4,19 +4,19 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".tsx", ".ts", ".js"],
   },
   mode: "development",
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx|js)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -27,8 +27,21 @@ module.exports = {
         use: [{ loader: "html-loader" }],
       },
       {
-        test: /\.s[ac]ss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        test: /\.(scss)$/,
+        use: [
+          {
+            loader: "style-loader", // inject CSS to page
+          },
+          {
+            loader: "css-loader", // translates CSS into CommonJS modules
+          },
+          {
+            loader: "postcss-loader", // Run post css actions
+          },
+          {
+            loader: "sass-loader", // compiles Sass to CSS
+          },
+        ],
       },
     ],
   },
