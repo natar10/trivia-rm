@@ -1,23 +1,16 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
-const TerserWebpackPlugin = require("terser-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
 module.exports = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "/",
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
-    alias: {
-      "@components": path.resolve(__dirname, "src/components"),
-      "@styles": path.resolve(__dirname, "src/styles"),
-    },
   },
   mode: "production",
   module: {
@@ -26,7 +19,7 @@ module.exports = {
         test: /\.(ts|tsx|js)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: "ts-loader",
         },
       },
       {
@@ -37,25 +30,16 @@ module.exports = {
         test: /\.(scss)$/,
         use: [
           {
-            // Adds CSS to the DOM by injecting a `<style>` tag
-            loader: "style-loader",
+            loader: "style-loader", // inject CSS to page
           },
           {
-            // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: "css-loader",
+            loader: "css-loader", // translates CSS into CommonJS modules
           },
           {
-            // Loader for webpack to process CSS with PostCSS
-            loader: "postcss-loader",
-            options: {
-              plugins: function () {
-                return [require("autoprefixer")];
-              },
-            },
+            loader: "postcss-loader", // Run post css actions
           },
           {
-            // Loads a SASS/SCSS file and compiles it to CSS
-            loader: "sass-loader",
+            loader: "sass-loader", // compiles Sass to CSS
           },
         ],
       },
@@ -69,10 +53,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
-    new CleanWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+    }),
   ],
-  optimization: {
-    minimize: true,
-    minimizer: [new CssMinimizerWebpackPlugin(), new TerserWebpackPlugin()],
-  },
 };

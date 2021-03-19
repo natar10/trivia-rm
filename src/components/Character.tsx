@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Button } from "./Button";
 interface CharacterData {
   id: number;
   name: string;
@@ -9,11 +9,11 @@ interface CharacterData {
   image: string;
 }
 
-interface IMyProps {
+interface CharacterProps {
   characterData: CharacterData;
 }
 
-const Character: React.FC<IMyProps> = (props: IMyProps) => {
+const Character: React.FC<CharacterProps> = (props: CharacterProps) => {
   return (
     <div className="card mb-4 box-shadow">
       <img
@@ -27,6 +27,7 @@ const Character: React.FC<IMyProps> = (props: IMyProps) => {
         <h4>{props.characterData.name}</h4>
         <h3>{props.characterData.species}</h3>
         <h3>{props.characterData.status}</h3>
+        <Button primary>CHOOSE</Button>
       </div>
     </div>
   );
