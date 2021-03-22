@@ -11,6 +11,7 @@ const character = {
   species: "Humano",
   gender: "Male",
   image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+  episode: ["https://rickandmortyapi.com/api/episode/27"],
 };
 
 describe("When the APP component is rendered", () => {

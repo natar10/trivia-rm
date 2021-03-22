@@ -1,11 +1,36 @@
 import React from "react";
-import { Badge } from "react-bootstrap";
+import { Badge, Spinner } from "react-bootstrap";
+import { useGameContext } from "../../context/GameContext";
+import Clue from "./Clue";
+import { head } from "ramda";
 
 const QuestionNumber = () => {
+  const data = useGameContext();
+
+  const question =
+    data.status == "LOADED" ? (
+      <span>{data.question}</span>
+    ) : (
+      <Spinner
+        className="small-spinner"
+        animation="border"
+        size="sm"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
+
   return (
-    <div>
+    <div className="text-right">
       <h1>
-        Who is who? <Badge variant="secondary">1/10</Badge>
+        <div className="text-center">
+          Question # <Badge variant="secondary">{question}</Badge>
+        </div>
+
+        {data.status == "LOADED" && (
+          <Clue episode={data.value.character!.episode[0]} />
+        )}
       </h1>
     </div>
   );

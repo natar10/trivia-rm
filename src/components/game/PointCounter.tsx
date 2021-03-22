@@ -2,12 +2,12 @@ import React from "react";
 import { Badge, Spinner } from "react-bootstrap";
 import { useGameContext } from "../../context/GameContext";
 
-const LifesCounter = () => {
+const PointCounter = () => {
   const data = useGameContext();
 
-  const lifes =
+  const points =
     data.status == "LOADED" ? (
-      <span>{data.lifes}</span>
+      <span>{data.points}</span>
     ) : (
       <Spinner
         className="small-spinner"
@@ -23,11 +23,11 @@ const LifesCounter = () => {
     <div className="text-right">
       <h1>
         <div className="text-center">
-          Lifes <Badge variant="secondary">{lifes}/3</Badge>
+          Points <Badge variant="secondary">{points}</Badge>
         </div>
       </h1>
     </div>
   );
 };
 
-export default LifesCounter;
+export default PointCounter;

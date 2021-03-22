@@ -1,38 +1,31 @@
 import React from "react";
-import { AppContextProvider } from "../context/AppContext";
+import { GameContextProvider } from "../context/GameContext";
 import { Props } from "../common/types";
 import { Col, Container, Row } from "react-bootstrap";
 import QuestionNumber from "../components/game/QuestionNumber";
 import LifesCounter from "../components/game/LifesCounter";
-import CharacterPicture from "../components/game/CharacterPicture";
-import GuessOptions from "../components/game/GuessOptions";
-import Clue from "../components/game/Clue";
 import GameTitle from "../components/layout/GameTitle";
+import PointCounter from "../components/game/PointCounter";
+import GamePanel from "../components/game/GamePanel";
 
 const Trivia: React.FC<Props> = (props: Props) => {
   return (
     <React.Fragment>
-      <AppContextProvider>
+      <GameContextProvider>
         <GameTitle />
         <Container>
           <Row>
-            <Col xs={6} md={6}>
+            <Col xs={12} md={6}>
               <QuestionNumber />
             </Col>
-            <Col xs={6} md={6}>
+            <Col xs={12} md={6}>
+              <PointCounter />
               <LifesCounter />
             </Col>
           </Row>
-
-          <Row>
-            <Col xs={12}>
-              <CharacterPicture />
-              <GuessOptions />
-              <Clue />
-            </Col>
-          </Row>
+          <GamePanel />
         </Container>
-      </AppContextProvider>
+      </GameContextProvider>
     </React.Fragment>
   );
 };
