@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./Button";
+import { Button } from "./styled/Button";
 interface CharacterData {
   id: number;
   name: string;

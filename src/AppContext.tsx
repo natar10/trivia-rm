@@ -1,28 +1,38 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { RMCharacter, ContextState } from "./common/types";
+import { RMCharacter, ContextState, LoadingStatus } from "./common/types";
 import { RickCharacters } from "./services/RickApi";
 
-const ctxt = createContext<ContextState>({ status: "LOADING" });
+const ctxt = createContext<ContextState>({
+  status: "LOADING",
+  modalStatus: false,
+});
 
 const Provider: React.FC = ({ children }) => {
-  const [characters, setCharacters] = useState<ContextState>({
-    status: "LOADING",
-  });
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<LoadingStatus>("LOADING");
+  const [characters, setCharacters] = useState<RMCharacter[]>([]);
 
   useEffect(() => {
     RickCharacters.getCharacters()
       .then((data: RMCharacter[]) => {
-        setCharacters({
-          status: "LOADED",
-          value: { characters: data },
-        });
+        setCharacters(data);
+        setLoading("LOADED");
       })
       .catch((err) => {
-        setCharacters({ status: "ERROR" });
+        console.log(err);
+        setLoading("ERROR");
+        setCharacters([]);
       });
   }, []);
 
-  return <ctxt.Provider value={characters}>{children}</ctxt.Provider>;
+  const context: ContextState = {
+    status: loading,
+    value: { characters: characters },
+    modalStatus: isOpen,
+    toogleOpen: () => (isOpen ? setIsOpen(false) : setIsOpen(true)),
+  };
+
+  return <ctxt.Provider value={context}>{children}</ctxt.Provider>;
 };
 
 export const AppContextProvider = Provider;
