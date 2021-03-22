@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { RMCharacter, ContextState, LoadingStatus } from "./common/types";
-import { RickCharacters } from "./services/RickApi";
+import { RMCharacter, ContextState, LoadingStatus } from "../common/types";
+import { RickCharacters } from "../services/RickApi";
 
 const ctxt = createContext<ContextState>({
   status: "LOADING",
@@ -13,7 +13,7 @@ const Provider: React.FC = ({ children }) => {
   const [characters, setCharacters] = useState<RMCharacter[]>([]);
 
   useEffect(() => {
-    RickCharacters.getCharacters()
+    RickCharacters.getCharacters(Math.floor(Math.random() * 34))
       .then((data: RMCharacter[]) => {
         setCharacters(data);
         setLoading("LOADED");

@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "./styled/Button";
-import { useAppContext } from "../AppContext";
-import ImgsBack from "./ImgsBack";
+import { Button } from "../styled/Button";
+import { useAppContext } from "../../context/AppContext";
+import ImgsBack from "../layout/ImgsBack";
 
 const StartGame = () => {
   const data = useAppContext();
@@ -9,11 +9,11 @@ const StartGame = () => {
     <div className="container">
       <div className="row">
         <div className="col-md-12 text-center">
-          <h1 className="trivia">TRIVIA</h1>
+          <h1 className="trivia">Who is who?</h1>
           {data.status == "LOADED" ? (
             <React.Fragment>
               <Button onClick={data.toogleOpen} primary>
-                JUGAR
+                PLAY
               </Button>
               <ImgsBack characters={data.value.characters} />
             </React.Fragment>

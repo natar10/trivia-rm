@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
-import { useAppContext } from "../AppContext";
+import { useAppContext } from "../../context/AppContext";
+import { Link } from "@reach/router";
 
 export default function GeneralModal() {
   const data = useAppContext();
@@ -32,7 +33,9 @@ export default function GeneralModal() {
             <Button onClick={data.toogleOpen} variant="secondary">
               NOPE!
             </Button>
-            <Button variant="primary">LET'S DO IT</Button>
+            <Link className="btn btn-primary" to="/trivia">
+              LET'S DO IT
+            </Link>
           </Modal.Footer>
         </Modal>
       )}

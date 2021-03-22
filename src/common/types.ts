@@ -23,3 +23,7 @@ export type ContextState =
       modalStatus: boolean;
       toogleOpen?: any;
     };
+
+export interface Props {
+  path: string;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, waitFor, act } from "@testing-library/react";
-import App from "../src/components/App";
+import App from "../src/containers/App";
 import Sinon from "sinon";
 import { RickCharacters } from "../src/services/RickApi";
 
@@ -16,7 +16,9 @@ const character = {
 describe("When the APP component is rendered", () => {
   it("service returns the caracters", async () => {
     Sinon.stub(RickCharacters, "getCharacters").resolves([character]);
-    const characters = await RickCharacters.getCharacters();
+    const characters = await RickCharacters.getCharacters(
+      Math.floor(Math.random() * 34)
+    );
     expect(characters).toEqual([character]);
   });
 
