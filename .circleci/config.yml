@@ -1,0 +1,30 @@
+version: 2.1
+jobs:
+  build:
+    # pre-built images: https://circleci.com/docs/2.0/circleci-images/
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      - checkout
+      - run:
+          name: Checking node version
+          command: |
+            node -v
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-v1-{{ .Branch }}-
+            - node-v1-
+      - run:
+          name: Install dependencies
+          command: |
+            npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Running tests
+          command: |
+            npm run test
