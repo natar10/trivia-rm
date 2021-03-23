@@ -23,7 +23,10 @@ const PointCounter = () => {
     <div className="text-right">
       <h1>
         <div className="text-center">
-          Points <Badge variant="secondary">{points}</Badge>
+          Points{" "}
+          <Badge className="points" variant="secondary">
+            {points}
+          </Badge>
         </div>
       </h1>
     </div>

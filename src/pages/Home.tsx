@@ -7,15 +7,13 @@ import GeneralModal from "../components/layout/Modal";
 import { Props } from "../common/types";
 
 const App: React.FC<Props> = (props: Props) => {
+  const myRef = React.createRef();
   return (
     <React.Fragment>
       <AppContextProvider>
         <BigTitle />
         <StartGame />
-        {ReactDOM.createPortal(
-          <GeneralModal />,
-          document.getElementById("modal")!
-        )}
+        <GeneralModal />,
       </AppContextProvider>
     </React.Fragment>
   );

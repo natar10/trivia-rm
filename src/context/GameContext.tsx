@@ -29,7 +29,6 @@ const Provider: React.FC = ({ children }) => {
         setCharacter(data);
         RickCharacters.getRandomCharacters().then(
           (randomData: RMCharacter[]) => {
-            console.log(randomData);
             setRandomCharacters(randomData);
             setLoading("LOADED");
           }
