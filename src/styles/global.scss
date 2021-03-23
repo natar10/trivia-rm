@@ -45,3 +45,18 @@ body {
 .small-spinner {
   margin: 0px 3px 16px 0;
 }
+
+li {
+  font-size: 1.7em;
+}
+
+@media only screen and (max-width: 800px) {
+  .bigImage {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 801px) {
+  .bigImage {
+    width: 40%;
+  }
+}

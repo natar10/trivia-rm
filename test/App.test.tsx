@@ -22,13 +22,11 @@ describe("When the APP component is rendered", () => {
     );
     expect(characters).toEqual([character]);
   });
-  /*
+
   it("render returned character from API", async () => {
     render(<App />);
     await waitFor(() => {
-      expect(screen.getByText("Un personaje")).toBeTruthy();
-      expect(screen.getByText("Humano")).toBeTruthy();
+      expect(screen.getByText("PLAY")).toBeTruthy();
     });
   });
-  */
 });

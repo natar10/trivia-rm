@@ -8,6 +8,9 @@ export const Option = styled.button<{ variant: string | undefined }>`
   font-size: 30px;
   margin: 10px;
   width: 40%;
+  @media only screen and (max-width: 801px) {
+    width: 90%;
+  }
   ${(props) =>
     props.variant === "success" &&
     css`
