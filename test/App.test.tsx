@@ -60,8 +60,8 @@ describe("When the APP component is rendered", () => {
   it("returns the img from all the characters got by api", async () => {
     render(<Home path="/" />);
     await waitFor(() => {
-      expect(screen.getByText("PLAY")).toBeTruthy();
-      expect(screen.getByAltText("Guess Character")).toBeTruthy();
+      screen.getByText("PLAY");
+      screen.getByAltText("Guess Character");
     });
   });
 });
@@ -70,14 +70,14 @@ describe("When the Trivia component is rendered", () => {
   it("returns the single character for the question", async () => {
     render(<Trivia path="/trivia" />);
     await waitFor(() => {
-      expect(screen.getByText("Guess Character")).toBeTruthy();
+      screen.getByText("Guess Character");
     });
   });
 
   it("service returns the random characters for the question", async () => {
     render(<Trivia path="/trivia" />);
     await waitFor(() => {
-      expect(screen.getByText("Random Character 1")).toBeTruthy();
+      screen.getByText("Random Character 1");
     });
   });
 });

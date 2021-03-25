@@ -13,7 +13,7 @@ const App: React.FC<Props> = (props: Props) => {
       <AppContextProvider>
         <BigTitle />
         <StartGame />
-        <GeneralModal />,
+        <GeneralModal />
       </AppContextProvider>
     </React.Fragment>
   );

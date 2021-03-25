@@ -8,7 +8,7 @@ import GameTitle from "../components/layout/GameTitle";
 import PointCounter from "../components/game/PointCounter";
 import GamePanel from "../components/game/GamePanel";
 
-const Trivia: React.FC<Props> = (props: Props) => {
+const Trivia: React.FC<Props> = (props) => {
   return (
     <React.Fragment>
       <GameContextProvider>

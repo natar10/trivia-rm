@@ -35,7 +35,7 @@ export type ContextState =
       status: "LOADED";
       value: AppContextInterface;
       modalStatus: boolean;
-      toogleOpen?: any;
+      toogleOpen?: () => void;
     };
 
 export type GameContextState =
