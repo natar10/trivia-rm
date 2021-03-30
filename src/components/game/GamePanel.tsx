@@ -5,12 +5,17 @@ import GuessOptions from "./GuessOptions";
 import CharacterPicture from "./CharacterPicture";
 import Lose from "./Lose";
 import Win from "./Win";
+import LoadingOverlay from "react-loading-overlay-ts";
 
 const GamePanel = () => {
   const data = useGameContext();
   return (
-    <Row>
-      <>
+    <LoadingOverlay
+      active={data.status === "LOADED" ? false : true}
+      spinner
+      text="Loading your content..."
+    >
+      <Row>
         {data.lifes > 0 ? (
           <Col xs={12}>
             {data.points === 100 ? (
@@ -27,8 +32,8 @@ const GamePanel = () => {
             <Lose />
           </Col>
         )}
-      </>
-    </Row>
+      </Row>
+    </LoadingOverlay>
   );
 };
 

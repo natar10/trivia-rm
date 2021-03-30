@@ -54,7 +54,7 @@ const GuessOptions = () => {
   return (
     <div>
       <h2 className="text-center py-4">Who's this?</h2>
-      {data.status == "LOADED" ? (
+      {data.status == "LOADED" && (
         <div className="text-center">
           <fieldset disabled={revealAnswer}>
             {generateQuestions().map((character: RMCharacter) => {
@@ -82,20 +82,6 @@ const GuessOptions = () => {
           >
             NEXT
           </Button>
-        </div>
-      ) : (
-        <div className="text-center">
-          <ListGroup defaultActiveKey="#link1">
-            {loaders.map((load: number) => {
-              return (
-                <ListGroup.Item key={load}>
-                  <Spinner animation="border" size="sm" role="status">
-                    <span className="sr-only">Loading...</span>
-                  </Spinner>
-                </ListGroup.Item>
-              );
-            })}
-          </ListGroup>
         </div>
       )}
     </div>

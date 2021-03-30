@@ -9,18 +9,12 @@ const CharacterPicture = () => {
     <Container>
       <Row>
         <Col xs={12} md={12} className="text-center">
-          {data.status == "LOADED" ? (
+          {data.status == "LOADED" && (
             <Image
               className="img-character"
               src={data.value.character!.image}
               roundedCircle
             />
-          ) : (
-            <div className="img-loading">
-              <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </div>
           )}
         </Col>
       </Row>
