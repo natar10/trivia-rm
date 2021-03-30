@@ -17,7 +17,7 @@ const Lose = () => {
           />
           <h2 className="trivia">YOU LOST!</h2>
           {data.status === "LOADED" && (
-            <Button onClick={data.reset} primary>
+            <Button onClick={data.gameControl.reset} primary>
               PLAY AGAIN
             </Button>
           )}

@@ -7,10 +7,6 @@ import { Button } from "../styled/Button";
 import { Option } from "../styled/Option";
 
 const GuessOptions = () => {
-  function alertClicked() {
-    alert("You clicked the third ListGroupItem");
-  }
-
   const data = useGameContext();
 
   const generateQuestions = (): RMCharacter[] => {
@@ -42,6 +38,19 @@ const GuessOptions = () => {
     }
   };
 
+  const checkAnswer = (answer: number) => {
+    if (data.status === "LOADED") {
+      if (answer === data.value.character!.id) {
+        data.points < 100
+          ? data.gameControl.updatePoints(data.points + 10)
+          : data.points;
+      } else {
+        data.gameControl.updateLifes(data.lifes - 1);
+      }
+      data.gameControl.updateQuestion(data.question + 1);
+    }
+  };
+
   return (
     <div>
       <h2 className="text-center py-4">Who's this?</h2>
@@ -54,7 +63,7 @@ const GuessOptions = () => {
                   key={character.id}
                   variant={itemVariant(character.id)}
                   onClick={() => {
-                    data.checkAnswer!(character.id);
+                    checkAnswer!(character.id);
                     setRevealAnswer(true);
                   }}
                 >
@@ -66,7 +75,7 @@ const GuessOptions = () => {
           <Button
             className="mt-3"
             onClick={() => {
-              data.nextCharacter!();
+              data.gameControl.nextCharacter!();
               setRevealAnswer(false);
             }}
             primary

@@ -1,5 +1,4 @@
-import { MouseEventHandler } from "react";
-
+import { ReactNode } from "react";
 export interface AppContextInterface {
   characters: RMCharacter[];
 }
@@ -43,7 +42,7 @@ export type GameContextState =
       status: "LOADING" | "ERROR";
       points: number;
       lifes: number;
-      modalStatus: boolean;
+      modal: Modal;
     }
   | {
       status: "LOADED";
@@ -52,16 +51,31 @@ export type GameContextState =
       lifes: number;
       randomCharacters: RMCharacter[] | undefined;
       value: GameContextInterface;
-      modalStatus: boolean;
-      toogleOpen?: () => void;
-      reset?: () => void;
-      checkAnswer?: (a: number) => void;
-      nextCharacter?: () => void;
+      modal: Modal;
+      gameControl: {
+        reset?: () => void;
+        nextCharacter?: () => void;
+        updatePoints: (points: number) => void;
+        updateLifes: (lifes: number) => void;
+        updateQuestion: (question: number) => void;
+      };
     };
 
+interface Modal {
+  status: boolean;
+  toogle?: () => void;
+}
 export interface Props {
   path: string;
 }
 export interface ClueProps {
   episode: string | null;
+}
+
+export interface PropsNode {
+  children: ReactNode;
+}
+
+export interface State {
+  hasError: boolean;
 }

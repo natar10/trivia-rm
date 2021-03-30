@@ -5,7 +5,9 @@ import { getRandomNumber } from "../common/constants";
 
 const gameCtxt = createContext<GameContextState>({
   status: "LOADING",
-  modalStatus: false,
+  modal: {
+    status: false,
+  },
   points: 0,
   lifes: 3,
 });
@@ -63,11 +65,17 @@ const Provider: React.FC = ({ children }) => {
     lifes: lifes,
     randomCharacters: randomCharacters,
     value: { character: character },
-    modalStatus: isOpen,
-    toogleOpen: () => (isOpen ? setIsOpen(false) : setIsOpen(true)),
-    checkAnswer: (a: number) => check(a),
-    nextCharacter: () => setCharacterNumber(getRandomNumber()),
-    reset: () => restart(),
+    gameControl: {
+      nextCharacter: () => setCharacterNumber(getRandomNumber()),
+      reset: () => restart(),
+      updatePoints: (points: number) => setPoints(points),
+      updateLifes: (lifes: number) => setLifes(lifes),
+      updateQuestion: (question: number) => setQuestion(question),
+    },
+    modal: {
+      status: isOpen,
+      toogle: () => (isOpen ? setIsOpen(false) : setIsOpen(true)),
+    },
   };
 
   return <gameCtxt.Provider value={context}>{children}</gameCtxt.Provider>;
