@@ -14,8 +14,8 @@ const Provider: React.FC = ({ children }) => {
 
   useEffect(() => {
     RickCharacters.getCharacters(Math.floor(Math.random() * 34))
-      .then((data: RMCharacter[]) => {
-        setCharacters(data);
+      .then((body: RMCharacter[]) => {
+        setCharacters(body);
         setLoading("LOADED");
       })
       .catch((err) => {

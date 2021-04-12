@@ -25,7 +25,10 @@ const QuestionNumber = () => {
     <div className="text-right">
       <h1>
         <div className="text-center">
-          Question # <Badge variant="secondary">{question}</Badge>
+          Question #{" "}
+          <Badge role="question-counter" variant="secondary">
+            {question}
+          </Badge>
         </div>
 
         {data.status == "LOADED" && (

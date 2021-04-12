@@ -10,10 +10,11 @@ const Clue = (props: ClueProps) => {
   const [episode, setEpisode] = useState<RMEpisode | null>(null);
 
   useEffect(() => {
+    let isMounted = true;
     if (props.episode) {
       RickCharacters.getClue(props.episode)
         .then((data: RMEpisode) => {
-          setEpisode(data);
+          if (isMounted) setEpisode(data);
         })
         .catch((err) => {
           console.log(err);
@@ -21,6 +22,9 @@ const Clue = (props: ClueProps) => {
     } else {
       setEpisode(null);
     }
+    return () => {
+      isMounted = false;
+    };
   }, [props.episode]);
 
   const popover = (

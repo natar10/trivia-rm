@@ -6,7 +6,7 @@ import { AppContextProvider } from "../context/AppContext";
 import GeneralModal from "../components/layout/Modal";
 import { Props } from "../common/types";
 
-const App: React.FC<Props> = (props: Props) => {
+const App: React.FC<Props> = (props) => {
   const myRef = React.createRef();
   return (
     <React.Fragment>

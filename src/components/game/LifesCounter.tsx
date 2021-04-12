@@ -23,7 +23,10 @@ const LifesCounter = () => {
     <div className="text-right">
       <h1>
         <div className="text-center">
-          Lifes <Badge variant="secondary">{lifes}/3</Badge>
+          Lifes{" "}
+          <Badge variant="secondary" role="lifes-counter">
+            {lifes}/3
+          </Badge>
         </div>
       </h1>
     </div>

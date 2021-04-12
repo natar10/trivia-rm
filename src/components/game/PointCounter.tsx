@@ -7,7 +7,7 @@ const PointCounter = () => {
 
   const points =
     data.status == "LOADED" ? (
-      <span>{data.points}</span>
+      <span role="point-counter">{data.points}</span>
     ) : (
       <Spinner
         className="small-spinner"

@@ -7,26 +7,29 @@ import LifesCounter from "../components/game/LifesCounter";
 import GameTitle from "../components/layout/GameTitle";
 import PointCounter from "../components/game/PointCounter";
 import GamePanel from "../components/game/GamePanel";
-import ErrorBoundary from "../components/layout/ErrorBoundary";
+import { ErrorBoundary } from "react-error-boundary";
+import DisplayError from "../components/layout/DisplayError";
+
+const myErrorHandler = (error: Error, info: { componentStack: string }) => {
+  console.log(error, info);
+};
 
 const Trivia: React.FC<Props> = (props) => {
   return (
     <GameContextProvider>
       <GameTitle />
-      <ErrorBoundary>
-        <Container>
-          <Row>
-            <Col xs={12} md={6}>
-              <QuestionNumber />
-            </Col>
-            <Col xs={12} md={6}>
-              <PointCounter />
-              <LifesCounter />
-            </Col>
-          </Row>
-          <GamePanel />
-        </Container>
-      </ErrorBoundary>
+      <Container>
+        <Row>
+          <Col xs={12} md={6}>
+            <QuestionNumber />
+          </Col>
+          <Col xs={12} md={6}>
+            <PointCounter />
+            <LifesCounter />
+          </Col>
+        </Row>
+        <GamePanel />
+      </Container>
     </GameContextProvider>
   );
 };
