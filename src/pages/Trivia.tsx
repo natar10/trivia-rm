@@ -10,7 +10,7 @@ import GamePanel from "../components/game/GamePanel";
 import { ErrorBoundary } from "react-error-boundary";
 import DisplayError from "../components/layout/DisplayError";
 
-const myErrorHandler = (error: Error, info: { componentStack: string }) => {
+const errorHandler = (error: Error, info: { componentStack: string }) => {
   console.log(error, info);
 };
 
@@ -19,16 +19,18 @@ const Trivia: React.FC<Props> = (props) => {
     <GameContextProvider>
       <GameTitle />
       <Container>
-        <Row>
-          <Col xs={12} md={6}>
-            <QuestionNumber />
-          </Col>
-          <Col xs={12} md={6}>
-            <PointCounter />
-            <LifesCounter />
-          </Col>
-        </Row>
-        <GamePanel />
+        <ErrorBoundary FallbackComponent={DisplayError} onError={errorHandler}>
+          <Row>
+            <Col xs={12} md={6}>
+              <QuestionNumber />
+            </Col>
+            <Col xs={12} md={6}>
+              <PointCounter />
+              <LifesCounter />
+            </Col>
+          </Row>
+          <GamePanel />
+        </ErrorBoundary>
       </Container>
     </GameContextProvider>
   );

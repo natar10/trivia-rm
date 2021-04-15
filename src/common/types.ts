@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { ReactNode, FormEvent, ChangeEvent } from "react";
+import { OptionsType } from "react-select";
 export interface AppContextInterface {
   characters: RMCharacter[];
 }
@@ -68,6 +69,27 @@ interface Modal {
 export interface Props {
   path: string;
 }
+export interface FormProps {
+  data: FormData;
+  handleChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  handleChangeSelect: (
+    selectedOption: OptionsType<SelectedOptions>,
+    field: string
+  ) => void;
+}
+
+export interface FormData {
+  name?: string;
+  email?: string;
+  more?: string;
+  newletters?: string[];
+}
+
+export interface SelectedOptions {
+  label: string;
+  value: string;
+}
+
 export interface ClueProps {
   episode: string | null;
 }

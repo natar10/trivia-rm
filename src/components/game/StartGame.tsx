@@ -3,6 +3,7 @@ import { Button } from "../styled/Button";
 import { useAppContext } from "../../context/AppContext";
 import ImgsBack from "../layout/ImgsBack";
 import LoadingOverlay from "react-loading-overlay-ts";
+import { Link } from "@reach/router";
 
 const StartGame = () => {
   const data = useAppContext();
@@ -17,12 +18,17 @@ const StartGame = () => {
             text="Loading your content..."
           >
             {data.status === "LOADED" && (
-              <React.Fragment>
+              <>
                 <Button onClick={data.toogleOpen} primary>
                   PLAY
                 </Button>
+                <Link to="/subscribe">
+                  <Button className="ml-4" secondary>
+                    SUBSCRIBE
+                  </Button>
+                </Link>
                 <ImgsBack characters={data.value.characters} />
-              </React.Fragment>
+              </>
             )}
           </LoadingOverlay>
         </div>

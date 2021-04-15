@@ -1,21 +1,8 @@
 import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import Trivia from "../src/pages/Trivia";
-import Home from "../src/pages/Home";
+import Trivia from "./Trivia";
 
-describe("Home component", () => {
-  describe("when the Home component is rendered", () => {
-    it("returns the imgs from all the characters got by api", async () => {
-      render(<Home path="/" />);
-      await waitFor(() => {
-        screen.getByText("PLAY");
-        screen.getByAltText("Guess Character");
-      });
-    });
-  });
-});
-
-describe("Trivia component", () => {
+describe("Trivia page", () => {
   describe("when the Trivia component is rendered", () => {
     it("returns the single character for the question", async () => {
       render(<Trivia path="/trivia" />);
