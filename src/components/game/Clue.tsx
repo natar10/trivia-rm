@@ -35,7 +35,8 @@ const Clue = (props: ClueProps) => {
         <Popover.Content>
           {episode && (
             <span>
-              <strong>This character apeared in:</strong> {episode.name}
+              <strong>This character apeared in:</strong>{" "}
+              {episode.name.toUpperCase()}
               <br />
               <strong>Episode #</strong> {episode.episode}
               <br />

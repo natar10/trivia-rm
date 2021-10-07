@@ -57,4 +57,5 @@ module.exports = {
       async: false,
     }),
   ],
+  devtool: "source-map",
 };
