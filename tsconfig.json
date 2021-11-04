@@ -2,7 +2,6 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "outDir": "./dist/",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
@@ -13,5 +12,5 @@
     "resolveJsonModule": true,
     "isolatedModules": false
   },
-  "include": ["src", "test"]
+  "include": ["src", "test", "server"]
 }

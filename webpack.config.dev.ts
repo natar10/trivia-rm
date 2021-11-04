@@ -3,12 +3,11 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
-module.exports = {
+const clientConfig = {
   entry: "./src/index.tsx",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
-    publicPath: "/",
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
@@ -59,9 +58,38 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "public"),
     compress: true,
     port: 3000,
   },
   devtool: "source-map",
 };
+
+const serverConfig = {
+  entry: "./server/index.tsx",
+  output: {
+    filename: "index.js",
+    path: path.join(__dirname, "dist"),
+  },
+  mode: "development",
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx|js)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "ts-loader",
+        },
+      },
+    ],
+  },
+  target: "node",
+  node: {
+    __dirname: false,
+  },
+};
+
+module.exports = [clientConfig, serverConfig];
