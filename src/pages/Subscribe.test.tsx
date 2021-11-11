@@ -46,4 +46,10 @@ describe("Subscribe component", () => {
       });
     });
   });
+
+  describe("when the email is received", () => {
+    it("returns true for a valid email", async () => {
+      expect("email@test.com").toBeEmail();
+    });
+  });
 });
