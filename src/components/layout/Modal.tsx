@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useAppContext } from "../../context/AppContext";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 
 export default function GeneralModal() {
   const data = useAppContext();

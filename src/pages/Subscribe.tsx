@@ -1,35 +1,35 @@
-import React, { FormEvent, useState } from "react";
-import { Button } from "../components/styled/Button";
-import { Props, SelectedOptions } from "../common/types";
-import { Col, Container, Row } from "react-bootstrap";
-import Image from "react-bootstrap/Image";
-import Select, { OptionsType } from "react-select";
-import GameTitle from "../components/layout/GameTitle";
-import Form from "../components/subscribe/Form";
-import { Link } from "@reach/router";
+import React, { FormEvent, useState } from 'react'
+import { Button } from '../components/styled/Button'
+import { SelectedOptions } from '../common/types'
+import { Col, Container, Row } from 'react-bootstrap'
+import Image from 'react-bootstrap/Image'
+import Select, { OptionsType } from 'react-select'
+import GameTitle from '../components/layout/GameTitle'
+import Form from '../components/subscribe/Form'
+import { Link } from 'react-router-dom'
 
-const Subscribe: React.FC<Props> = (props) => {
-  const [data, setData] = useState({ name: "", email: "", more: "no" });
-  const [sent, setSent] = useState(false);
+const Subscribe: React.FC = () => {
+  const [data, setData] = useState({ name: '', email: '', more: 'no' })
+  const [sent, setSent] = useState(false)
 
   const handleChange = (e: {
-    target: HTMLInputElement | HTMLSelectElement;
+    target: HTMLInputElement | HTMLSelectElement
   }) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
+    setData({ ...data, [e.target.name]: e.target.value })
+  }
 
   const handleChangeSelect = (
     selectedOption: OptionsType<SelectedOptions>,
-    field: string
+    field: string,
   ) => {
-    setData({ ...data, [field]: selectedOption });
-  };
+    setData({ ...data, [field]: selectedOption })
+  }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSent(true);
-    setData({ name: "", email: "", more: "no" });
-  };
+    e.preventDefault()
+    setSent(true)
+    setData({ name: '', email: '', more: 'no' })
+  }
 
   return (
     <>
@@ -79,7 +79,7 @@ const Subscribe: React.FC<Props> = (props) => {
         </Row>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Subscribe;
+export default Subscribe
