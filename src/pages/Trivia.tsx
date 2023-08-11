@@ -1,6 +1,5 @@
 import React from "react";
 import { GameContextProvider } from "../context/GameContext";
-import { Props } from "../common/types";
 import { Col, Container, Row } from "react-bootstrap";
 import QuestionNumber from "../components/game/QuestionNumber";
 import LifesCounter from "../components/game/LifesCounter";
@@ -14,7 +13,7 @@ const errorHandler = (error: Error, info: { componentStack: string }) => {
   console.log(error, info);
 };
 
-const Trivia: React.FC<Props> = (props) => {
+const Trivia: React.FC = () => {
   return (
     <GameContextProvider>
       <GameTitle />

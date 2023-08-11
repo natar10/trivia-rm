@@ -3,7 +3,7 @@ import { Button } from "../styled/Button";
 import { useAppContext } from "../../context/AppContext";
 import ImgsBack from "../layout/ImgsBack";
 import LoadingOverlay from "react-loading-overlay-ts";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 
 const StartGame = () => {
   const data = useAppContext();

@@ -1,5 +1,5 @@
 import React from "react";
-import { Router } from "@reach/router";
+import { Routes, Route } from "react-router-dom";
 import { AppContextProvider } from "../context/AppContext";
 
 import Home from "../pages/Home";
@@ -10,11 +10,11 @@ const App = () => {
   return (
     <React.Fragment>
       <AppContextProvider>
-        <Router>
-          <Home path="/" />
-          <Trivia path="/trivia" />
-          <Subscribe path="/subscribe" />
-        </Router>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/trivia" element={<Trivia />}/>
+          <Route path="/subscribe" element={<Subscribe />}/>
+        </Routes>
       </AppContextProvider>
     </React.Fragment>
   );

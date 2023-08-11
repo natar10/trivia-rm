@@ -66,9 +66,7 @@ interface Modal {
   status: boolean;
   toogle?: () => void;
 }
-export interface Props {
-  path: string;
-}
+
 export interface FormProps {
   data: FormData;
   handleChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
