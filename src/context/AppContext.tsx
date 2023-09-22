@@ -1,38 +1,34 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { RMCharacter, ContextState, LoadingStatus } from "../common/types";
+import React, { createContext, useContext } from "react";
 import { RickCharacters } from "../services/RickApi";
+import { useInterpret } from "@xstate/react";
+import { triviaMachine } from "../machines/triviaMachine";
+import { InterpreterFrom } from "xstate";
+import { getRandomNumber } from "../common/constants";
 
-const ctxt = createContext<ContextState>({
-  status: "LOADING",
-  modalStatus: false,
-});
+const ctxt = createContext({ stateService: {} as InterpreterFrom<typeof triviaMachine> });
 
 const Provider: React.FC = ({ children }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [loading, setLoading] = useState<LoadingStatus>("LOADING");
-  const [characters, setCharacters] = useState<RMCharacter[]>([]);
-
-  useEffect(() => {
-    RickCharacters.getCharacters(Math.floor(Math.random() * 34))
-      .then((body: RMCharacter[]) => {
-        setCharacters(body);
-        setLoading("LOADED");
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading("ERROR");
-        setCharacters([]);
-      });
-  }, []);
-
-  const context: ContextState = {
-    status: loading,
-    value: { characters: characters },
-    modalStatus: isOpen,
-    toogleOpen: () => (isOpen ? setIsOpen(false) : setIsOpen(true)),
-  };
-
-  return <ctxt.Provider value={context}>{children}</ctxt.Provider>;
+  const stateService = useInterpret(triviaMachine, {
+    services: {
+      loadTriviaCharacters: async () => {
+        const characters = await RickCharacters.getCharacters(Math.floor(Math.random() * 34))
+        return characters
+      },
+      loadRandomCharacter: async () => {
+        const character = await RickCharacters.getCharacter(getRandomNumber())
+        return character;
+      },
+      loadRandomCharacters: async () => {
+        const randomCharacters = await RickCharacters.getRandomCharacters();
+        return randomCharacters
+      }
+    },
+    guards: {
+      "lifes = 0": (context) => { return context.lifes == 0 },
+      "points >= 100": (context) => { return context.points >= 100 }
+    }
+  })
+  return <ctxt.Provider value={{ stateService }}>{children}</ctxt.Provider>;
 };
 
 export const AppContextProvider = Provider;

@@ -4,22 +4,31 @@ import { useAppContext } from "../../context/AppContext";
 import ImgsBack from "../layout/ImgsBack";
 import LoadingOverlay from "react-loading-overlay-ts";
 import { Link } from "react-router-dom";
+import { useActor } from "@xstate/react";
+
 
 const StartGame = () => {
   const data = useAppContext();
+  const [state] = useActor(data.stateService);
+  const { send } = data.stateService;
+ 
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-12 text-center">
           <h1 className="trivia">Who is who?</h1>
           <LoadingOverlay
-            active={data.status === "LOADED" ? false : true}
+            active={state.matches("Loading Trivia Characters")}
             spinner
             text="Loading your content..."
           >
-            {data.status === "LOADED" && (
+            {state.matches("Starting Trivia") && (
               <>
-                <Button onClick={data.toogleOpen} primary>
+                <Button onClick={() => {
+                  send({
+                    type: "Start"
+                  })
+                }} primary>
                   PLAY
                 </Button>
                 <Link to="/subscribe">
@@ -27,7 +36,7 @@ const StartGame = () => {
                     SUBSCRIBE
                   </Button>
                 </Link>
-                <ImgsBack characters={data.value.characters} />
+                <ImgsBack characters={state.context.characters} />
               </>
             )}
           </LoadingOverlay>

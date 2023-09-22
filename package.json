@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@testing-library/user-event": "^13.5.0",
+    "@xstate/react": "^3.2.2",
     "axios": "^0.21.4",
     "bootstrap": "^4.6.2",
     "jest": "^26.6.3",
@@ -29,7 +30,8 @@
     "react-select": "^4.3.1",
     "sinon": "^9.2.4",
     "styled-components": "^5.3.11",
-    "whatwg-fetch": "^3.6.17"
+    "whatwg-fetch": "^3.6.17",
+    "xstate": "^4.38.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",
