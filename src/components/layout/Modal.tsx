@@ -8,7 +8,7 @@ export default function GeneralModal() {
   const data = useAppContext();
   const [state] = useActor(data.stateService);
   const { send } = data.stateService;
-
+  console.log("THE STATE IN THE MODAL IS:///", state)
   return (
     <Modal
       show={state.matches("Instruction modal opened")}
@@ -37,9 +37,10 @@ export default function GeneralModal() {
         <Button onClick={() => { send({ type: "Reject Instructions" }) }} variant="secondary">
           <h3>NOPE!</h3>
         </Button>
-        <Link className="btn btn-primary" to="/trivia">
+        <Button className="btn btn-primary" onClick={() => { console.log("START TRIVIA!!!") 
+        send({ type: "Accept Instructions"})}}>
           <h3>LET'S DO IT</h3>
-        </Link>
+        </Button>
       </Modal.Footer>
     </Modal>
 

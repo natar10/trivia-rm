@@ -3,13 +3,14 @@ import { Badge, Spinner } from "react-bootstrap";
 import { useGameContext } from "../../context/GameContext";
 import Clue from "./Clue";
 import { head } from "ramda";
+import { useAppContext } from "../../context/AppContext";
 
 const QuestionNumber = () => {
-  const data = useGameContext();
+  const data = useAppContext();
 
   const question =
-    data.status == "LOADED" ? (
-      <span>{data.question}</span>
+    true ? (
+      <span>{1}</span>
     ) : (
       <Spinner
         className="small-spinner"
@@ -31,8 +32,8 @@ const QuestionNumber = () => {
           </Badge>
         </div>
 
-        {data.status == "LOADED" && (
-          <Clue episode={data.value.character!.episode[0]} />
+        {true && (
+          <Clue episode={null} />
         )}
       </h1>
     </div>
